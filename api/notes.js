@@ -1,16 +1,21 @@
 import express from "express";
-import { getNotes } from "#db/notes";
+import { addNote, getNotes } from "#db/notes";
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.status(200).send(getNotes());
+  return res.status(200).send(getNotes());
 });
 
 router.post("/", (req, res, next) => {
-  console.log(req.body);
-
-  res.status(404).send(req.body);
+  if (!req.body) {
+    return res.status(400).send("Request must have a body"); // return statement necessary here to prevent below code from running if condition is true
+  }
+  if (!req.body.text) {
+    return res.status(400).send("New note must have text.");
+  }
+  const newNote = addNote(req.body.text);
+  return res.status(201).send(newNote);
 });
 
 router.get("/:id", (req, res) => {

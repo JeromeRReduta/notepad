@@ -72,4 +72,5 @@ export function addNote(text) {
     text: text,
   };
   notes.push(newNote);
+  return newNote;
 }
