@@ -1,11 +1,9 @@
 import app from "#app";
-import { addNote, getNoteById, getNotes } from "#db/notes";
+import notesRouter from "#api/notes";
 const PORT = 3000;
+
+app.use("/notes", notesRouter);
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
-});
-
-app.get("/", (req, res) => {
-  addNote("baba booey");
-  res.status(200).send(getNotes());
 });
