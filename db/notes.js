@@ -57,6 +57,7 @@ export function getNotes() {
  * @returns {undefined} if no note with the given ID exists
  */
 export function getNoteById(id) {
+  // Note that since NAN !== NAN and NAN != NAN, getNoteById(NAN) will always return undefined, so we don't need to check for if input is NAN
   return notes.find((note) => note.id === id);
 }
 

@@ -1,5 +1,5 @@
 import express from "express";
-import { addNote, getNotes } from "#db/notes";
+import { addNote, getNoteById, getNotes } from "#db/notes";
 
 const router = express.Router();
 
@@ -19,7 +19,12 @@ router.post("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res) => {
-  res.status(200).send("TODO: /notes/:id");
+  const parsedId = parseInt(req.params.id);
+  const note = getNoteById(parsedId);
+  if (!note) {
+    return res.status(404).send(`No note with id ${req.params.id} exists!`);
+  }
+  return res.status(200).send(note);
 });
 
 export default router;
