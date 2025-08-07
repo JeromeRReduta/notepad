@@ -2,6 +2,8 @@ import express from "express";
 const app = express();
 export default app;
 
+app.use(express.json());
+
 // Simple logging middleware
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.originalUrl}`);

@@ -1,7 +1,7 @@
 import { describe, it, expect, test } from "vitest";
 import request from "supertest";
 
-import app from "#app";
+import app from "#server";
 import { getNotes, getNoteById, addNote } from "#db/notes";
 import notesRouter from "#api/notes";
 
