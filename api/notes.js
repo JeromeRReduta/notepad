@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res, next) => {
   if (!req.body) {
-    return res.status(400).send("Request must have a body"); // return statement necessary here to prevent below code from running if condition is true
+    return res.status(400).send("Request must have a body."); // return statement necessary here to prevent below code from running if condition is true
   }
   if (!req.body.text) {
     return res.status(400).send("New note must have text.");
